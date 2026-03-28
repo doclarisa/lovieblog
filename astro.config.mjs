@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://lovie.vercel.app',
+  site: 'https://lovieproject.com',
   integrations: [mdx(), sitemap()],
 
   vite: {
