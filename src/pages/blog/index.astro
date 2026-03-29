@@ -59,8 +59,14 @@ const posts = (await getCollection('blog')).sort(
 				line-height: 1;
 			}
 			.date {
-				margin: 0;
+				margin: 0.4em 0 0;
 				color: rgb(var(--gray));
+				font-size: 0.9em;
+			}
+			.description {
+				margin: 0.4em 0 0;
+				color: rgb(var(--gray-dark));
+				font-size: 0.9em;
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
@@ -101,7 +107,11 @@ const posts = (await getCollection('blog')).sort(
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
+										{post.data.author && <span> &middot; {post.data.author}</span>}
 									</p>
+									{post.data.description && (
+										<p class="description">{post.data.description}</p>
+									)}
 								</a>
 							</li>
 						))
