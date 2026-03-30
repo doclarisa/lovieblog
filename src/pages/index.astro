@@ -18,28 +18,68 @@ const posts = (await getCollection('blog'))
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			.hero {
-				padding: 4em 1em 2em;
-				text-align: center;
+				padding: 4em 1em 3.5em;
+				text-align: left;
 				border-bottom: 1px solid rgb(var(--gray-light));
-				margin-bottom: 2em;
+				margin-bottom: 3em;
+				max-width: 700px;
+			}
+			.hero .label {
+				font-family: "Atkinson", sans-serif;
+				font-size: 0.75em;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--accent);
+				font-weight: 700;
+				margin-bottom: 0.75em;
+				display: block;
 			}
 			.hero h1 {
-				font-size: 2.5em;
-				margin-bottom: 0.4em;
+				font-size: 2.8em;
+				margin-bottom: 0.5em;
+				line-height: 1.1;
 			}
 			.hero p {
-				max-width: 600px;
-				margin: 0 auto;
 				color: rgb(var(--gray));
-				font-size: 1.1em;
+				font-size: 1.05em;
+				margin: 0 0 1.5em;
+				line-height: 1.7;
+				font-style: italic;
+			}
+			.hero-cta {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				text-decoration: none;
+				padding: 0.6em 1.4em;
+				border-radius: 4px;
+				font-family: "Atkinson", sans-serif;
+				font-size: 0.85em;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				transition: background 0.15s ease;
+			}
+			.hero-cta:hover {
+				background: var(--accent-dark);
+				color: white;
 			}
 			main {
 				width: 960px;
 			}
-			.recent-posts h2 {
+			.recent-posts {
+				margin-bottom: 2em;
+			}
+			.section-label {
+				font-family: "Atkinson", sans-serif;
+				font-size: 0.72em;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: rgb(var(--gray));
+				font-weight: 700;
 				margin-bottom: 1.5em;
-				font-size: 1.4em;
-				color: rgb(var(--gray-dark));
+				padding-bottom: 0.75em;
+				border-bottom: 1px solid rgb(var(--gray-light));
+				display: block;
 			}
 			ul {
 				display: flex;
@@ -58,72 +98,80 @@ const posts = (await getCollection('blog'))
 			}
 			ul li:first-child {
 				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
+				margin-bottom: 0.5rem;
 			}
 			ul li:first-child img {
 				width: 100%;
 			}
 			ul li:first-child .title {
-				font-size: 2.369rem;
+				font-size: 1.9rem;
 			}
 			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
+				margin-bottom: 0.75rem;
+				border-radius: 8px;
 			}
 			ul li a {
 				display: block;
 			}
+			.card {
+				padding: 0;
+			}
 			.title {
-				margin: 0;
+				margin: 0 0 0.35em;
 				color: rgb(var(--black));
-				line-height: 1;
+				line-height: 1.2;
+				font-size: 1.1rem;
 			}
 			.date {
-				margin: 0.4em 0 0;
+				margin: 0 0 0.5em;
 				color: rgb(var(--gray));
-				font-size: 0.9em;
+				font-size: 0.82em;
+				font-family: "Atkinson", sans-serif;
 			}
 			.description {
-				margin: 0.4em 0 0;
+				margin: 0;
 				color: rgb(var(--gray-dark));
-				font-size: 0.9em;
+				font-size: 0.88em;
+				line-height: 1.55;
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
+			ul li a:hover .title {
+				color: var(--accent);
 			}
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
 			}
 			.all-posts {
-				margin-top: 2em;
-				text-align: center;
+				margin-top: 2.5em;
+				padding-top: 1.5em;
+				border-top: 1px solid rgb(var(--gray-light));
 			}
 			.all-posts a {
-				color: rgb(var(--accent));
+				color: var(--accent);
 				text-decoration: none;
-				font-weight: 600;
+				font-family: "Atkinson", sans-serif;
+				font-weight: 700;
+				font-size: 0.9em;
+				letter-spacing: 0.03em;
 			}
 			.all-posts a:hover {
+				color: var(--accent-dark);
 				text-decoration: underline;
 			}
 			@media (max-width: 720px) {
 				.hero h1 {
-					font-size: 1.8em;
+					font-size: 2em;
 				}
 				ul {
-					gap: 0.5em;
+					gap: 1rem;
 				}
 				ul li {
 					width: 100%;
-					text-align: center;
 				}
 				ul li:first-child {
 					margin-bottom: 0;
 				}
 				ul li:first-child .title {
-					font-size: 1.563em;
+					font-size: 1.5rem;
 				}
 			}
 		</style>
@@ -132,11 +180,16 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<div class="hero">
-				<h1>The Lovie Project</h1>
-				<p>{SITE_DESCRIPTION}</p>
+				<span class="label">The Lovie Project</span>
+				<h1>History as it actually happened</h1>
+				<p>
+					Real events. Real stakes. Written with the narrative depth and tension of Erik Larson-style
+					storytelling — for businesses that want content worth reading.
+				</p>
+				<a href="/blog" class="hero-cta">Read the stories &rarr;</a>
 			</div>
 			<section class="recent-posts">
-				<h2>Recent Stories</h2>
+				<span class="section-label">Recent Stories</span>
 				<ul>
 					{
 						posts.map((post) => (
@@ -145,14 +198,16 @@ const posts = (await getCollection('blog'))
 									{post.data.heroImage && (
 										<Image width={720} height={360} src={post.data.heroImage} alt="" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-										{post.data.author && <span> &middot; {post.data.author}</span>}
-									</p>
-									{post.data.description && (
-										<p class="description">{post.data.description}</p>
-									)}
+									<div class="card">
+										<h4 class="title">{post.data.title}</h4>
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+											{post.data.author && <span> &middot; {post.data.author}</span>}
+										</p>
+										{post.data.description && (
+											<p class="description">{post.data.description}</p>
+										)}
+									</div>
 								</a>
 							</li>
 						))

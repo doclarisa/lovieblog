@@ -4,64 +4,93 @@ import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
+	<div class="masthead">
+		<a href="/" class="brand">{SITE_TITLE}</a>
+		<p class="tagline">History told with the depth it deserves</p>
+	</div>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Stories</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="social-links">
-			<a href="/rss.xml" title="RSS Feed">
-				<span class="sr-only">RSS Feed</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
-					><path
-						fill="currentColor"
-						d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
-					></path></svg
-				>
-			</a>
 		</div>
 	</nav>
 </header>
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: rgb(22, 22, 28);
+		border-bottom: 3px solid #b5470a;
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
+	.masthead {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 1.5em 1em 1em;
+		display: flex;
+		align-items: baseline;
+		gap: 1.5em;
 	}
-
-	h2 a,
-	h2 a.active {
+	.brand {
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 1.6em;
+		font-weight: 700;
+		color: #fff9f5;
 		text-decoration: none;
+		letter-spacing: -0.01em;
+		line-height: 1;
+		white-space: nowrap;
+	}
+	.brand:hover {
+		color: #fde8dc;
+	}
+	.tagline {
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 0.8em;
+		color: rgba(255, 249, 245, 0.5);
+		margin: 0;
+		font-style: italic;
+		line-height: 1;
 	}
 	nav {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 0 1em;
+		border-top: 1px solid rgba(255, 249, 245, 0.08);
+	}
+	.internal-links {
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		gap: 0;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+	nav :global(a) {
+		padding: 0.6em 1em 0.6em 0;
+		color: rgba(255, 249, 245, 0.75);
+		border-bottom: 3px solid transparent;
+		margin-bottom: -3px;
 		text-decoration: none;
+		font-size: 0.85em;
+		font-family: "Atkinson", sans-serif;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: color 0.15s ease, border-color 0.15s ease;
 	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
+	nav :global(a:hover) {
+		color: #fff9f5;
 	}
-	.social-links,
-	.social-links a {
-		display: flex;
+	nav :global(a.active) {
+		color: #b5470a;
+		border-bottom-color: #b5470a;
 	}
 	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+		.masthead {
+			flex-direction: column;
+			gap: 0.3em;
+			padding: 1em 1em 0.75em;
+		}
+		.brand {
+			font-size: 1.3em;
+		}
+		.tagline {
+			font-size: 0.75em;
 		}
 	}
 </style>

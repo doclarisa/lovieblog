@@ -3,37 +3,143 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} The Lovie Project. All rights reserved.
-	<div class="social-links">
-		<a href="/rss.xml" title="RSS Feed">
-			<span class="sr-only">RSS Feed</span>
-			<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+	<div class="footer-inner">
+		<div class="footer-brand">
+			<a href="/" class="brand">The Lovie Project</a>
+			<p class="mission">
+				Narrative nonfiction for businesses that want to build authority without
+				abandoning their standards.
+			</p>
+		</div>
+		<div class="footer-nav">
+			<h4>Navigate</h4>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/blog">Stories</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</div>
+		<div class="footer-contact">
+			<h4>Work With Us</h4>
+			<p>
+				We work with companies of all sizes, from project-based engagements to
+				ongoing content partnerships.
+			</p>
+			<a href="/about" class="cta-link">Learn more &rarr;</a>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<span>&copy; {today.getFullYear()} The Lovie Project. All rights reserved.</span>
+		<a href="/rss.xml" title="RSS Feed" class="rss-link">
+			<svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"
 				><path
 					fill="currentColor"
 					d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
 				></path></svg
 			>
+			<span class="sr-only">RSS Feed</span>
 		</a>
 	</div>
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
+		background: rgb(22, 22, 28);
+		color: rgba(255, 249, 245, 0.65);
+		margin-top: 4em;
+		border-top: 3px solid #b5470a;
 	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
+	.footer-inner {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 3em 1em 2em;
+		display: grid;
+		grid-template-columns: 2fr 1fr 2fr;
+		gap: 3em;
 	}
-	.social-links a {
+	.footer-brand .brand {
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 1.2em;
+		font-weight: 700;
+		color: #fff9f5;
 		text-decoration: none;
-		color: rgb(var(--gray));
+		letter-spacing: -0.01em;
+		display: block;
+		margin-bottom: 0.75em;
 	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+	.footer-brand .brand:hover {
+		color: #fde8dc;
+	}
+	.mission {
+		margin: 0;
+		font-size: 0.85em;
+		line-height: 1.6;
+		font-style: italic;
+	}
+	.footer-nav h4,
+	.footer-contact h4 {
+		font-family: "Atkinson", sans-serif;
+		font-size: 0.7em;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #b5470a;
+		margin: 0 0 1em;
+		padding: 0;
+	}
+	.footer-nav ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+	}
+	.footer-nav a {
+		color: rgba(255, 249, 245, 0.65);
+		text-decoration: none;
+		font-size: 0.9em;
+		transition: color 0.15s ease;
+	}
+	.footer-nav a:hover {
+		color: #fff9f5;
+	}
+	.footer-contact p {
+		font-size: 0.85em;
+		line-height: 1.6;
+		margin: 0 0 1em;
+	}
+	.cta-link {
+		font-size: 0.85em;
+		color: #b5470a;
+		text-decoration: none;
+		font-family: "Atkinson", sans-serif;
+		font-weight: 700;
+	}
+	.cta-link:hover {
+		color: #d4571c;
+	}
+	.footer-bottom {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 1.25em 1em;
+		border-top: 1px solid rgba(255, 249, 245, 0.08);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 0.8em;
+	}
+	.rss-link {
+		color: rgba(255, 249, 245, 0.4);
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+	.rss-link:hover {
+		color: rgba(255, 249, 245, 0.8);
+	}
+	@media (max-width: 720px) {
+		.footer-inner {
+			grid-template-columns: 1fr;
+			gap: 2em;
+			padding: 2em 1em;
+		}
 	}
 </style>
