@@ -7,9 +7,18 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
+function extractFirstImageUrl(body: string): string | null {
+	const match = body.match(/!\[.*?\]\((.+?)\)/);
+	return match ? match[1] : null;
+}
+
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 6);
+	.slice(0, 6)
+	.map((post) => ({
+		...post,
+		bodyThumb: !post.data.heroImage ? extractFirstImageUrl(post.body ?? '') : null,
+	}));
 ---
 
 <!doctype html>
@@ -18,10 +27,10 @@ const posts = (await getCollection('blog'))
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			.hero {
-				padding: 4em 1em 3.5em;
+				padding: 2.25em 1em 2em;
 				text-align: left;
 				border-bottom: 1px solid rgb(var(--gray-light));
-				margin-bottom: 3em;
+				margin-bottom: 2.5em;
 				max-width: 700px;
 			}
 			.hero .label {
@@ -35,9 +44,12 @@ const posts = (await getCollection('blog'))
 				display: block;
 			}
 			.hero h1 {
-				font-size: 2.8em;
-				margin-bottom: 0.5em;
-				line-height: 1.1;
+				font-size: 3.2em;
+				margin-bottom: 0.4em;
+				line-height: 1.05;
+				font-family: Georgia, "Times New Roman", serif;
+				font-weight: 700;
+				letter-spacing: -0.02em;
 			}
 			.hero p {
 				color: rgb(var(--gray));
@@ -119,8 +131,11 @@ const posts = (await getCollection('blog'))
 			.title {
 				margin: 0 0 0.35em;
 				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.1rem;
+				line-height: 1.15;
+				font-size: 1.15rem;
+				font-family: Georgia, "Times New Roman", serif;
+				font-weight: 700;
+				letter-spacing: -0.01em;
 			}
 			.date {
 				margin: 0 0 0.5em;
@@ -139,6 +154,17 @@ const posts = (await getCollection('blog'))
 			}
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
+			}
+			.card-thumb {
+				width: 100%;
+				height: 220px;
+				object-fit: cover;
+				border-radius: 8px;
+				margin-bottom: 0.75rem;
+				display: block;
+			}
+			ul li:first-child .card-thumb {
+				height: 360px;
 			}
 			.all-posts {
 				margin-top: 2.5em;
@@ -180,7 +206,7 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<div class="hero">
-				<span class="label">The Lovie Project</span>
+				<span class="label">Lovie Project Studio</span>
 				<h1>History as it actually happened</h1>
 				<p>
 					Real events. Real stakes. Written with the narrative depth and tension of Erik Larson-style
@@ -195,9 +221,11 @@ const posts = (await getCollection('blog'))
 						posts.map((post) => (
 							<li>
 								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
+									{post.data.heroImage ? (
+										<Image width={720} height={360} src={post.data.heroImage} alt="" class="card-thumb" />
+									) : post.bodyThumb ? (
+										<img src={post.bodyThumb} alt="" class="card-thumb" />
+									) : null}
 									<div class="card">
 										<h4 class="title">{post.data.title}</h4>
 										<p class="date">
