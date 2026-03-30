@@ -37,8 +37,8 @@ Three pillars. A corrupt official for advance intelligence. A presidential famil
 
 ## The Silence from Washington
 
-![Jay Gould, circa 1870](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Jay_Gould_1870.jpg/800px-Jay_Gould_1870.jpg)
-*Jay Gould, circa 1870 — Library of Congress, Prints and Photographs Division, public domain.*
+![Jay Gould — Bain News Service portrait](/jay-gould.jpg)
+*Jay Gould — Bain News Service, Library of Congress, public domain.*
 
 Through September, the scheme held. Gould and Fisk bought aggressively, driving gold from $130 to $140, then to $143 when the Gold Room opened on the twenty-fourth. The press was beginning to notice. The *New York Times* ran increasingly alarmed dispatches about the rising price and the chaos on the floor. Legitimate merchants who needed gold to settle import accounts found themselves priced out of the market entirely — paying a premium that had nothing to do with supply and everything to do with a private agreement reached in a railroad office uptown.
 
